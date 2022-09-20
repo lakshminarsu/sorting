@@ -14,7 +14,17 @@ public class SortingController {
 
     @GetMapping
     public Integer[] sortNumbers(@RequestParam Integer[] values) {
-        Arrays.sort(values);
+        int arrayLength = values.length;
+        int temp = 0;
+        for (int i = 0; i < arrayLength; i++) {
+          for (int j = 1; j < (arrayLength - i); j++) {
+            if (values[j - 1] > values[j]) {
+              temp = values[j - 1];
+              values[j - 1] = values[j];
+              values[j] = temp;
+            }
+          }
+        }
         return values;
     }
 }
